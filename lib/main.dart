@@ -32,54 +32,103 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  
+  List<String> titles = ['Bike', 'Boat', 'Bus', 'Car'];
 
   @override
   Widget build(BuildContext context) {
+    // final icons = [
+    //   Icons.directions_bike,
+    //   Icons.directions_boat,
+    //   Icons.directions_bus,
+    //   Icons.directions_car,
+    // ];
+
     return Scaffold(
-      body: 
-      // Container(
-      //   width: 200,
-      //   height: 200,
-      //   padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-      //   margin: const EdgeInsets.all(9),
-      //   decoration: BoxDecoration(
-      //     color: Colors.black,
-      //     borderRadius: BorderRadius.circular(50),
-      //     border: Border.all(
-      //       width: 3,
-      //       color: Colors.orange,
-      //     )
-      //   ),
-      //   alignment: Alignment.center,
-      //   child: const Text(
-      //     "Hello World!",
-      //     style: TextStyle(
-      //       fontSize: 20,
-      //       fontWeight: FontWeight.bold,
-      //       color: Colors.red
+      appBar: AppBar(
+        title: const Text("List View"),
+        backgroundColor: Colors.deepOrange[300],
+      ),
+      body: ListView.builder(
+        itemCount: titles.length,
+        itemBuilder: (context, nomor) {
+          return Card(
+            child: ListTile(
+              // leading: Icon(icons[nomor]),
+              leading: CircleAvatar(
+                backgroundImage:
+                    NetworkImage("https://picsum.photos/200/300?images=$nomor"),
+              ),
+              title: Text(titles[nomor]),
+              onTap: () {
+                setState(() {
+                  titles.removeAt(nomor);
+                });
+              },
+            ),
+          );
+        },
+      ),
+      //   children: const [
+      //     ListTile(
+      //       // leading: Icon(Icons.sunny),
+      //       leading : CircleAvatar(
+      //         backgroundImage: AssetImage("sun.jpg"),
+      //       ),
+      //       title: Text("Sun"),
+      //       trailing: Icon(Icons.keyboard_arrow_right),
       //     ),
-      //   )
+      //     ListTile(
+      //       leading: Icon(Icons.brightness_3),
+      //       title: Text("Moon"),
+
+      //       trailing: Icon(Icons.keyboard_arrow_right),
+      //     ),
+      //     ListTile(
+      //       leading: Icon(Icons.star),
+      //       title: Text("Star"),
+      //       trailing: Icon(Icons.keyboard_arrow_right),
+      //     ),
+      //   ],
       // )
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.red,
-          ),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.green,
-          ),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.blue,
-          ),
-        ],
-      )
+      // GridView(
+      //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      //     crossAxisCount: 3,
+      //   ),
+      //   children: [
+      //     Container(
+      //       width: 100,
+      //       height: 250,
+      //       margin: const EdgeInsets.only(bottom: 10),
+      //       decoration: const BoxDecoration(
+      //         color: Colors.red,
+      //         image: DecorationImage(
+      //           image: AssetImage("gambar.jpg"),
+      //         ),
+      //       ),
+      //     ),
+      //     Container(
+      //       width: 100,
+      //       height: 250,
+      //       margin: const EdgeInsets.only(bottom: 10),
+      //       color: Colors.blue,
+      //       child: const Image(image: AssetImage("gambar.jpg")),
+      //     ),
+      //     Container(
+      //       width: 100,
+      //       height: 250,
+      //       margin: const EdgeInsets.only(bottom: 10),
+      //       color: Colors.green,
+      //       child: Image.network("https://picsum.photos/200"),
+      //     ),
+      //     Container(
+      //       width: 100,
+      //       height: 250,
+      //       margin: const EdgeInsets.only(bottom: 10),
+      //       color: const Color.fromARGB(255, 0, 0, 0),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }
